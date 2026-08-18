@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumbo a Barcelona · Leaderboard SyntX World Cup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   PALETA — tokens exactos. Usar solo estos.
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --void:#05060B;      /* fondo de la página */
+  --panel:#0D1018;     /* tarjetas y filas */
+  --panel-2:#12161F;   /* elementos internos (chips de país, sub-tarjetas) */
+  --line:#1F2531;      /* bordes */
+  --line-hot:#2C3444;  /* bordes en hover */
+  --text:#F2F5FA;      /* texto principal */
+  --muted:#7C8798;     /* texto secundario */
+  --dim:#5A6472;       /* texto terciario, etiquetas apagadas */
+  --blue:#3A55F7;      /* azul de marca */
+  --blue-lit:#5B78FF;  /* azul claro, valores que ya llegaron al 100% */
+  --orange:#F2711C;    /* naranja de marca */
+  --orange-lit:#FF8A3D;/* naranja claro, valores por debajo del 100% */
+  --gold:#E8B33A;      /* dorado, SOLO para lugares asegurados */
+  --up:#3DD68C;        /* verde, flecha de subida */
+  --down:#F2564B;      /* rojo, flecha de bajada */
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 80px}
+::selection{background:rgba(91,120,255,.32)}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(900px 420px at 8% -10%, rgba(58,85,247,.42), transparent 62%),
+    radial-gradient(780px 480px at 96% 108%, rgba(242,113,28,.34), transparent 60%),
+    linear-gradient(160deg,#080A12 0%,#05060B 58%,#0A0710 100%);
+}
+.hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:26px 18px 40px}
+.hero-mark{
+  position:absolute;right:-1%;top:50%;transform:translateY(-50%);z-index:1;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:min(52vw,460px);line-height:.8;letter-spacing:-.04em;
+  opacity:.20;pointer-events:none;user-select:none;white-space:nowrap;
+  background:linear-gradient(115deg,var(--blue) 0%,#7A5BFF 48%,var(--orange) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.brand-logo{
+  width:34px;height:34px;border-radius:9px;flex:none;
+  background:linear-gradient(150deg,var(--blue-lit),var(--blue));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(58,85,247,.35);
+}
+.brand-logo svg{width:19px;height:19px;display:block}
+.brand-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.01em}
+.brand-div{width:1px;height:26px;background:var(--line-hot);margin:0 2px}
+.brand-anniv{display:flex;flex-direction:column;line-height:1}
+.brand-anniv b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em}
+.brand-anniv b em{font-style:normal;color:var(--orange)}
+.brand-anniv span{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.22em;color:var(--dim);margin-top:2px}
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(38px,7.5vw,74px);line-height:.98;letter-spacing:-.03em;
+  margin:0 0 18px;max-width:15ch;
+}
+.hero h1 .bcn{
+  background:linear-gradient(100deg,var(--orange-lit),var(--gold));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.hero .sub{font-size:clamp(15px,2.1vw,19px);color:var(--muted);max-width:46ch;margin:0 0 26px;font-weight:400}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.02em;
+  padding:7px 13px;border-radius:999px;border:1px solid var(--line-hot);
+  background:rgba(13,16,24,.55);color:var(--muted);backdrop-filter:blur(6px);
+}
+.pill.live{color:var(--text);border-color:rgba(61,214,140,.34)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--up);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,214,140,.5)}70%{box-shadow:0 0 0 7px rgba(61,214,140,0)}100%{box-shadow:0 0 0 0 rgba(61,214,140,0)}}
+
+/* ═══════════════════════════════════════════════════════════
+   STATS
+   ═══════════════════════════════════════════════════════════ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:34px 0 30px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px 15px}
+.stat .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:9px}
+.stat .v{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.02em;line-height:1}
+.stat .v small{font-size:15px;color:var(--muted);font-weight:500}
+
+/* ═══════════════════════════════════════════════════════════
+   TARJETAS DE REGLAS
+   ═══════════════════════════════════════════════════════════ */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.rule{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 18px 20px;transition:border-color .18s}
+.rule:hover{border-color:var(--line-hot)}
+.rule .n{font-family:'Space Mono',monospace;font-size:12px;color:var(--dim);letter-spacing:.1em;margin-bottom:12px}
+.rule h3{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:16px;margin:0 0 8px;letter-spacing:-.01em}
+.rule p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+
+/* ═══════════════════════════════════════════════════════════
+   EJEMPLO (details)
+   ═══════════════════════════════════════════════════════════ */
+details.example{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:30px;overflow:hidden}
+details.example>summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:15px}
+details.example>summary::-webkit-details-marker{display:none}
+details.example>summary .hint{font-family:'Inter',sans-serif;font-weight:400;font-size:13px;color:var(--dim)}
+details.example>summary .chev{transition:transform .2s;color:var(--muted);flex:none}
+details.example[open]>summary .chev{transform:rotate(180deg)}
+.example-body{padding:2px 20px 22px;border-top:1px solid var(--line)}
+.example-lead{font-size:13.5px;color:var(--muted);margin:16px 0}
+.example-lead b{color:var(--text);font-weight:600}
+.ex-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ex-card{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:15px 15px 16px}
+.ex-card .tag{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:11px}
+.ex-metric{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
+.ex-metric span{font-family:'Space Mono',monospace;font-size:12.5px;color:var(--muted)}
+.ex-metric b{font-family:'Space Mono',monospace;font-weight:700;font-size:13px}
+.ex-metric b.hi{color:var(--blue-lit)}
+.ex-metric b.lo{color:var(--orange-lit)}
+.ex-verdict{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--muted)}
+.ex-verdict.good{color:var(--up)}
+.ex-adv{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;letter-spacing:-.02em;color:var(--gold);line-height:1}
+.ex-calc{font-family:'Space Mono',monospace;font-size:12.5px;color:var(--muted);margin-top:8px}
+.example-foot{font-size:13px;color:var(--muted);margin:16px 0 0;line-height:1.55}
+.example-foot b{color:var(--text);font-weight:600}
+
+/* ═══════════════════════════════════════════════════════════
+   BUSCADOR + LEYENDA
+   ═══════════════════════════════════════════════════════════ */
+.controls{margin-bottom:14px}
+.search{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 4px 4px 15px;transition:border-color .18s}
+.search:focus-within{border-color:var(--blue)}
+.search svg{flex:none;color:var(--dim)}
+.search input{flex:1;background:none;border:none;outline:none;color:var(--text);font-family:'Space Mono',monospace;font-size:14px;padding:12px 4px;letter-spacing:.02em}
+.search input::placeholder{color:var(--dim)}
+.search button{flex:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.03em;color:var(--muted);background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;transition:.15s}
+.search button:hover{color:var(--text);border-color:var(--line-hot)}
+.search button:disabled{opacity:0;pointer-events:none}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:14px 2px 0;font-size:12px;color:var(--muted)}
+.legend .item{display:inline-flex;align-items:center;gap:7px}
+.legend .sw{width:14px;height:14px;border-radius:4px;flex:none}
+.sw-seat{background:linear-gradient(100deg,var(--orange-lit),var(--gold))}
+.sw-q{background:var(--blue)}
+.sw-race{background:var(--orange)}
+.legend .pace-sw{width:2px;height:15px;background:rgba(255,255,255,.55);border-radius:2px;flex:none}
+
+/* ═══════════════════════════════════════════════════════════
+   PANEL DE ESTADO PERSONAL
+   ═══════════════════════════════════════════════════════════ */
+.me{margin:18px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line-hot);background:var(--panel)}
+.me[hidden]{display:none}
+.me-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.me-code{font-family:'Space Mono',monospace;font-weight:700;font-size:16px;letter-spacing:.02em}
+.me-country{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.me-chip{margin-left:auto}
+.me-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.me-metric{padding:16px 20px 18px}
+.me-metric+.me-metric{border-left:1px solid var(--line)}
+.me-metric .lab{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:9px}
+.me-metric .val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px;line-height:1;letter-spacing:-.02em}
+.me-metric .val.hi{color:var(--blue-lit)}
+.me-metric .val.lo{color:var(--orange-lit)}
+.me-metric .gap{font-family:'Space Mono',monospace;font-size:12px;margin-top:9px;color:var(--muted)}
+.me-metric .gap.done{color:var(--up)}
+.me-verdict{padding:16px 20px 18px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);line-height:1.6}
+.me-verdict b,.me-verdict .em{color:var(--text);font-weight:600}
+
+/* ═══════════════════════════════════════════════════════════
+   TABLERO
+   ═══════════════════════════════════════════════════════════ */
+.board{margin-top:22px;display:flex;flex-direction:column;gap:9px}
+.board-empty{text-align:center;color:var(--dim);font-family:'Space Mono',monospace;font-size:13px;padding:40px 0;border:1px dashed var(--line);border-radius:14px}
+
+.row{
+  position:relative;display:grid;gap:10px 14px;align-items:center;
+  grid-template-columns:44px 44px minmax(112px,1.3fr) auto minmax(190px,2.4fr) 104px;
+  grid-template-areas:"pos move ident pct bar num";
+  padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  transition:border-color .16s;
+}
+.row:hover{border-color:var(--line-hot)}
+.row.seat{border-color:rgba(242,113,28,.42);background:linear-gradient(100deg,rgba(242,113,28,.10),rgba(58,85,247,.08)),var(--panel)}
+
+.c-pos{grid-area:pos;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.02em;text-align:center}
+.row.seat .c-pos{color:var(--gold)}
+.c-move{grid-area:move;display:flex;justify-content:center}
+.mv{display:inline-flex;align-items:center;gap:2px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700}
+.mv i{font-style:normal}
+.mv-up{color:var(--up)}
+.mv-down{color:var(--down)}
+.mv-same{color:var(--dim)}
+.mv-new{color:var(--dim);font-size:9px}
+
+.c-ident{grid-area:ident;min-width:0}
+.c-ident .code{font-family:'Space Mono',monospace;font-weight:700;font-size:15px;letter-spacing:.03em}
+.c-ident .country{display:inline-flex;align-items:center;gap:7px;margin-top:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 8px;font-size:11.5px;color:var(--muted);max-width:100%}
+.c-ident .country .flag{font-size:13px;line-height:1}
+.c-ident .country .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.c-pct{grid-area:pct;display:flex;align-items:center}
+.chip{display:inline-flex;align-items:center;font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:6px;white-space:nowrap}
+.chip-seat{background:linear-gradient(100deg,var(--orange-lit),var(--gold));color:#0A0A0A}
+.chip-q{background:rgba(58,85,247,.13);color:var(--blue-lit);border:1px solid rgba(58,85,247,.35)}
+.chip-race{background:rgba(242,113,28,.12);color:var(--orange-lit);border:1px solid rgba(242,113,28,.35)}
+
+.c-bar{grid-area:bar;min-width:0}
+.bar{position:relative;height:9px;border-radius:6px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;border-radius:6px;transition:width .5s ease}
+.bar-seat{background:linear-gradient(90deg,var(--orange),var(--gold))}
+.bar-blue{background:var(--blue)}
+.bar-orange{background:var(--orange)}
+.pace{position:absolute;top:-3px;bottom:-3px;width:2px;background:rgba(255,255,255,.55);border-radius:2px;z-index:2}
+
+/* barritas por KPI */
+.kpi-bars{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.kpi{display:flex;align-items:center;gap:9px}
+.kpi-lab{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);width:34px;flex:none}
+.kpi-track{position:relative;flex:1;height:5px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}
+.kpi-fill{position:absolute;inset:0 auto 0 0;border-radius:4px;transition:width .5s ease}
+.kpi-fill.hi{background:var(--blue-lit)}
+.kpi-fill.lo{background:var(--orange-lit)}
+.kpi-pace{position:absolute;top:-2px;bottom:-2px;width:1.5px;background:rgba(255,255,255,.42);z-index:2}
+.kpi-val{font-family:'Space Mono',monospace;font-size:11px;width:42px;flex:none;text-align:right}
+.kpi-val.hi{color:var(--blue-lit)}
+.kpi-val.lo{color:var(--orange-lit)}
+
+.miss{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-top:9px;line-height:1.4}
+.miss[hidden]{display:none}
+
+.c-num{grid-area:num;text-align:right}
+.c-num .big{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;line-height:1;letter-spacing:-.02em}
+.c-num .big.gold{color:var(--gold)}
+.c-num .big.blue{color:var(--blue-lit)}
+.c-num .big.orange{color:var(--orange-lit)}
+.c-num .cap{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+.cutline{display:flex;align-items:center;gap:14px;margin:5px 2px;color:var(--gold);font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+.cutline::before,.cutline::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,179,58,.4),transparent)}
+
+.foot{text-align:center;margin-top:48px;padding-top:26px;border-top:1px solid var(--line);color:var(--dim);font-size:12.5px;line-height:1.8}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — reflujo real, sin scroll horizontal en ningún ancho
+   ═══════════════════════════════════════════════════════════ */
+@media(max-width:920px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .rules{grid-template-columns:1fr}
+  .ex-cards{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .row{
+    grid-template-columns:38px 38px 1fr auto;
+    grid-template-areas:
+      "pos move ident num"
+      "pct  pct  pct   pct"
+      "bar  bar  bar   bar";
+    row-gap:12px;
+  }
+  .c-num .big{font-size:23px}
+  .me-grid{grid-template-columns:1fr}
+  .me-metric+.me-metric{border-left:none;border-top:1px solid var(--line)}
+}
+@media(max-width:440px){
+  .stats{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:clamp(32px,10vw,52px)}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header class="hero">
+  <div class="hero-mark" aria-hidden="true">20</div>
+  <div class="hero-inner">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 20h3V10H6v10zm5 0h2c2 0 3-1 3.4-3l1.2-6c.2-1.2-.6-2-1.6-2h-4l.6-3c.1-.8-.4-1.5-1.2-1.5-.5 0-1 .3-1.2.8L11 9v11z" fill="#fff"/></svg>
+      </span>
+      <span class="brand-name">Weltrade</span>
+      <span class="brand-div"></span>
+      <span class="brand-anniv"><b>2<em>0</em></b><span>AÑOS · DESDE 2006</span></span>
+    </div>
+
+    <h1>Rumbo a <span class="bcn">Barcelona</span></h1>
+    <p class="sub">Llegá al 100% en FTD y Spread para entrar en carrera. Solo los primeros 25 viajan.</p>
+
+    <div class="hero-meta">
+      <span class="pill" id="pill-period"></span>
+      <span class="pill live"><span class="dot"></span><span id="pill-date"></span></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ═══════════════ STATS ═══════════════ -->
+  <section class="stats" id="stats" aria-label="Resumen"></section>
+
+  <!-- ═══════════════ REGLAS ═══════════════ -->
+  <section class="rules" aria-label="Cómo funciona">
+    <article class="rule">
+      <div class="n">01</div>
+      <h3>Sin compensación</h3>
+      <p>FTD y Spread necesitan 100% cada uno por su cuenta. 150% en uno no cubre 50% en el otro.</p>
+    </article>
+    <article class="rule">
+      <div class="n">02</div>
+      <h3>La ponderación</h3>
+      <p>Dentro de tu 100%, FTD vale 60% y Spread 40%. Eso ordena el ranking por encima de la línea.</p>
+    </article>
+    <article class="rule">
+      <div class="n">03</div>
+      <h3>25 lugares</h3>
+      <p>Llegar al 100% te habilita, no te asegura. Viajan los 25 de mejor desempeño.</p>
+    </article>
+  </section>
+
+  <!-- ═══════════════ EJEMPLO ═══════════════ -->
+  <details class="example">
+    <summary>
+      <span>Ejemplo — cómo se arma la ventaja <span class="hint">(partner ficticio)</span></span>
+      <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </summary>
+    <div class="example-body">
+      <p class="example-lead">Este es <b>Roberto.</b> Su meta es <b>70 FTD</b> y <b>USD 60.000</b> de Spread. Mirá cómo los dos umbrales y la ponderación se convierten en un solo número.</p>
+      <div class="ex-cards">
+        <div class="ex-card">
+          <div class="tag">Mitad de camino</div>
+          <div class="ex-metric"><span>FTD</span><b class="lo">56 · 80%</b></div>
+          <div class="ex-metric"><span>Spread</span><b class="hi">USD 66.000 · 110%</b></div>
+          <div class="ex-verdict">Todavía no entra — le faltan 14 FTD.</div>
+        </div>
+        <div class="ex-card">
+          <div class="tag">Cierre</div>
+          <div class="ex-metric"><span>FTD</span><b class="hi">84 · 120%</b></div>
+          <div class="ex-metric"><span>Spread</span><b class="hi">USD 75.000 · 125%</b></div>
+          <div class="ex-verdict good">Las dos por encima de 100% — entra.</div>
+        </div>
+        <div class="ex-card">
+          <div class="tag">Su ventaja</div>
+          <div class="ex-adv">+22</div>
+          <div class="ex-calc">0,60 × 20 + 0,40 × 25 = 22</div>
+        </div>
+      </div>
+      <p class="example-foot"><b>FTD pesa más</b>, así que el mismo esfuerzo en FTD lo mueve más arriba en el tablero que el mismo esfuerzo en Spread.</p>
+    </div>
+  </details>
+
+  <!-- ═══════════════ BUSCADOR + LEYENDA ═══════════════ -->
+  <section class="controls">
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="search" type="text" inputmode="numeric" autocomplete="off" placeholder="Buscá tu IB Code…" aria-label="Buscar por IB Code">
+      <button id="clear" disabled>Limpiar</button>
+    </div>
+
+    <div class="legend">
+      <span class="item"><span class="sw sw-seat"></span>Lugar</span>
+      <span class="item"><span class="sw sw-q"></span>Clasificado</span>
+      <span class="item"><span class="sw sw-race"></span>En carrera</span>
+      <span class="item"><span class="pace-sw"></span>Dónde deberías estar hoy</span>
+    </div>
+
+    <div class="me" id="me" hidden></div>
+  </section>
+
+  <!-- ═══════════════ TABLERO ═══════════════ -->
+  <section class="board" id="board" aria-label="Leaderboard"></section>
+
+  <!-- ═══════════════ PIE ═══════════════ -->
+  <footer class="foot">
+    <div>El avance se publica solo como porcentajes, nunca como valores absolutos.</div>
+    <div>El trading implica riesgos. No constituye asesoramiento financiero.</div>
+  </footer>
+
+</main>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════
+   CONFIG  —  se edita a mano, semana a semana
+   ══════════════════════════════════════════════════════════════════════ */
+const CFG = {
+  PERIODO : "21 Ago – 20 Sep 2026",  // texto del período (header)
+  FECHA   : "21 Ago 2026",           // fecha de ESTA actualización (a mano)
+  DIA     : 1,                       // día transcurrido (1 = 21 de agosto)
+  DIAS    : 31,                      // días totales del desafío
+  ASIENTOS: 25,                      // lugares a Barcelona
+  W_FTD   : 0.60,                    // peso de FTD
+  W_SPR   : 0.40                     // peso de Spread
+};
+
+/* ══════════════════════════════════════════════════════════════════════
+   DATA  —  una línea por partner. SOLO dos porcentajes por partner.
+   ftd  = % de la meta de FTD alcanzado
+   spr  = % de la meta de Spread alcanzado
+   prev = puesto en la actualización ANTERIOR (0 la primera semana / nuevos)
+
+   Día uno: todos en 0. Nada de valores absolutos ni metas en el archivo.
+
+   DUPLICADOS — se pasan sumados desde la planilla (un solo % por partner):
+     · Kate Trader      → se publica en 94693  (suma 94693 + 61439)
+     · Jonathan Sandoval→ se publica en 78870  (suma 78870 + 70579)
+     Los codes 61439 y 70579 NO van como fila propia: ya están adentro.
+   ══════════════════════════════════════════════════════════════════════ */
+const DATA = [
+  { code:"61380", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61434", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61482", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61487", country:"Uruguay",              ftd:0, spr:0, prev:0 },
+  { code:"61495", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61533", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61538", country:"Guatemala",            ftd:0, spr:0, prev:0 },
+  { code:"61572", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61578", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61694", country:"Ecuador",              ftd:0, spr:0, prev:0 },
+  { code:"61726", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61786", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"61809", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62037", country:"Ecuador",              ftd:0, spr:0, prev:0 },
+  { code:"62062", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62064", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62149", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62225", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62267", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62274", country:"Ecuador",              ftd:0, spr:0, prev:0 },
+  { code:"62275", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62302", country:"República Dominicana", ftd:0, spr:0, prev:0 },
+  { code:"62396", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62421", country:"Venezuela",            ftd:0, spr:0, prev:0 },
+  { code:"62468", country:"Ecuador",              ftd:0, spr:0, prev:0 },
+  { code:"62594", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62661", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62670", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"62997", country:"Ecuador",              ftd:0, spr:0, prev:0 },
+  { code:"63770", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"64035", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"64298", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"64674", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"65068", country:"Costa Rica",           ftd:0, spr:0, prev:0 },
+  { code:"65602", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"65662", country:"República Dominicana", ftd:0, spr:0, prev:0 },
+  { code:"67290", country:"Bolivia",              ftd:0, spr:0, prev:0 },
+  { code:"69127", country:"Venezuela",            ftd:0, spr:0, prev:0 },
+  { code:"70130", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"76322", country:"Costa Rica",           ftd:0, spr:0, prev:0 },
+  { code:"80698", country:"México",               ftd:0, spr:0, prev:0 },
+  { code:"81579", country:"República Dominicana", ftd:0, spr:0, prev:0 },
+  { code:"86157", country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"91423", country:"Venezuela",            ftd:0, spr:0, prev:0 },
+  { code:"101893",country:"Colombia",             ftd:0, spr:0, prev:0 },
+  { code:"78870", country:"Colombia",             ftd:0, spr:0, prev:0 }, // Jonathan Sandoval (78870 + 70579)
+  { code:"94693", country:"Colombia",             ftd:0, spr:0, prev:0 }  // Kate Trader (94693 + 61439)
+];
+
+/* ══════════════════════════════════════════════════════════════════════
+   País → bandera (el emoji se usa SOLO para banderas)
+   ══════════════════════════════════════════════════════════════════════ */
+const FLAGS = {
+  "colombia":"🇨🇴","mexico":"🇲🇽","peru":"🇵🇪","chile":"🇨🇱","argentina":"🇦🇷",
+  "ecuador":"🇪🇨","bolivia":"🇧🇴","brasil":"🇧🇷","brazil":"🇧🇷","panama":"🇵🇦",
+  "guatemala":"🇬🇹","republica dominicana":"🇩🇴","dominican republic":"🇩🇴",
+  "costa rica":"🇨🇷","uruguay":"🇺🇾","paraguay":"🇵🇾","venezuela":"🇻🇪",
+  "honduras":"🇭🇳","el salvador":"🇸🇻","nicaragua":"🇳🇮","puerto rico":"🇵🇷","cuba":"🇨🇺"
+};
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
+const flagOf = c => FLAGS[norm(c)] || "🏳️";
+
+/* ══════════════════════════════════════════════════════════════════════
+   MÉTRICAS  —  todo se deriva del array. Nada hardcodeado.
+   ══════════════════════════════════════════════════════════════════════ */
+const PACE = CFG.DIA / CFG.DIAS * 100;                 // dónde deberías estar hoy
+const DAYS_LEFT = Math.max(0, CFG.DIAS - CFG.DIA + 1); // constante del config
+
+function compute(p){
+  const qualified = p.ftd >= 100 && p.spr >= 100;
+  const score     = CFG.W_FTD * p.ftd + CFG.W_SPR * p.spr;      // ponderado, sin tope
+  const advantage = score - 100;                                // ventaja
+  const avance    = CFG.W_FTD * Math.min(p.ftd,100) + CFG.W_SPR * Math.min(p.spr,100); // topado a 100
+  const weakest   = Math.min(p.ftd, p.spr);                     // desempate
+  return {...p, qualified, score, advantage, avance, weakest};
+}
+
+let ROWS = DATA.map(compute);
+const qual = ROWS.filter(r=>r.qualified).sort((a,b)=>
+  b.score - a.score || b.weakest - a.weakest || a.code.localeCompare(b.code));
+const race = ROWS.filter(r=>!r.qualified).sort((a,b)=>
+  b.avance - a.avance || a.code.localeCompare(b.code));
+const ORDERED = [...qual, ...race];
+ORDERED.forEach((r,i)=>{
+  r.rank  = i + 1;
+  r.seat  = r.qualified && r.rank <= CFG.ASIENTOS;
+  r.state = r.seat ? "seat" : (r.qualified ? "qualified" : "race");
+});
+
+const N      = ORDERED.length;
+const N_QUAL = qual.length;
+const AVG    = N ? ORDERED.reduce((s,r)=>s+r.avance,0) / N : 0;
+
+/* ══════════════════════════════════════════════════════════════════════
+   Formato (decimales con coma)
+   ══════════════════════════════════════════════════════════════════════ */
+function fmtAdv(n){
+  const r = Math.round(n*10)/10;
+  const val = Number.isInteger(r) ? r.toFixed(0) : r.toFixed(1).replace(".",",");
+  return (r>=0 ? "+" : "") + val;
+}
+const pct = n => Math.round(n) + "%";
+
+function missingText(r){
+  if(r.ftd === 0 && r.spr === 0) return "";   // día uno limpio
+  const parts = [];
+  if(r.ftd < 100) parts.push(`${Math.round(100 - r.ftd)}% de tu meta de FTD`);
+  if(r.spr < 100) parts.push(`${Math.round(100 - r.spr)}% de tu meta de Spread`);
+  if(!parts.length) return "";
+  return "Te falta " + parts.join(" y ");
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Header + stats
+   ══════════════════════════════════════════════════════════════════════ */
+document.getElementById("pill-period").textContent = CFG.PERIODO;
+document.getElementById("pill-date").textContent   = "Actualizado " + CFG.FECHA;
+
+document.getElementById("stats").innerHTML = [
+  ["Participantes", `${N}`],
+  ["Clasificados",  `${N_QUAL}<small> / ${CFG.ASIENTOS}</small>`],
+  ["Avance prom.",  `${Math.round(AVG)}<small>%</small>`],
+  ["Días restantes",`${DAYS_LEFT}`]
+].map(([k,v])=>`<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
+
+/* ══════════════════════════════════════════════════════════════════════
+   Filas
+   ══════════════════════════════════════════════════════════════════════ */
+function moveHTML(r){
+  if(r.prev === 0) return `<span class="mv mv-new" title="Nuevo">•</span>`;
+  const d = r.prev - r.rank;
+  if(d > 0) return `<span class="mv mv-up" title="Subió ${d}">▲<i>${d}</i></span>`;
+  if(d < 0) return `<span class="mv mv-down" title="Bajó ${-d}">▼<i>${-d}</i></span>`;
+  return `<span class="mv mv-same" title="Sin cambios">–</span>`;
+}
+
+function kpiBar(lab, val){
+  const cls = val >= 100 ? "hi" : "lo";
+  const w   = Math.max(0, Math.min(100, val));
+  return `<div class="kpi">
+      <span class="kpi-lab">${lab}</span>
+      <div class="kpi-track">
+        <div class="kpi-fill ${cls}" style="width:${w}%"></div>
+        <div class="kpi-pace" style="left:${PACE}%"></div>
+      </div>
+      <span class="kpi-val ${cls}">${pct(val)}</span>
+    </div>`;
+}
+
+function chipHTML(state){
+  return state === "seat"      ? `<span class="chip chip-seat">Lugar</span>`
+       : state === "qualified" ? `<span class="chip chip-q">Clasificado</span>`
+       :                         `<span class="chip chip-race">En carrera</span>`;
+}
+
+function rowHTML(r){
+  // barra principal (composición): dorado si lugar · azul si clasificado o al ritmo · naranja si atrasado
+  let barCls, fillW;
+  if(r.state === "seat"){ barCls = "bar-seat"; fillW = 100; }
+  else if(r.qualified){   barCls = "bar-blue"; fillW = 100; }
+  else { fillW = r.avance; barCls = (r.avance >= PACE) ? "bar-blue" : "bar-orange"; }
+
+  let big, bigCls, cap;
+  if(r.qualified){ big = fmtAdv(r.advantage); bigCls = r.seat ? "gold" : "blue"; cap = "ventaja"; }
+  else { big = pct(r.avance); bigCls = "orange"; cap = "avance"; }
+
+  const miss = (r.state === "race") ? missingText(r) : "";
+
+  return `<div class="row ${r.seat?'seat':''}">
+    <div class="c-pos">${r.rank}</div>
+    <div class="c-move">${moveHTML(r)}</div>
+    <div class="c-ident">
+      <div class="code">${r.code}</div>
+      <div class="country"><span class="flag">${flagOf(r.country)}</span><span class="nm">${r.country}</span></div>
+    </div>
+    <div class="c-pct">${chipHTML(r.state)}</div>
+    <div class="c-bar">
+      <div class="bar">
+        <div class="fill ${barCls}" style="width:${Math.max(0,Math.min(100,fillW))}%"></div>
+        <div class="pace" style="left:${PACE}%"></div>
+      </div>
+      <div class="kpi-bars">
+        ${kpiBar("FTD", r.ftd)}
+        ${kpiBar("SPR", r.spr)}
+      </div>
+      <div class="miss" ${miss?'':'hidden'}>${miss}</div>
+    </div>
+    <div class="c-num">
+      <div class="big ${bigCls}">${big}</div>
+      <div class="cap">${cap}</div>
+    </div>
+  </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Panel de estado personal
+   ══════════════════════════════════════════════════════════════════════ */
+function gapCell(label, val){
+  const done = val >= 100;
+  const cls  = done ? "hi" : "lo";
+  const gap  = done ? `<span class="gap done">Meta alcanzada</span>`
+                    : `<span class="gap">Falta ${Math.round(100 - val)}%</span>`;
+  return `<div class="me-metric">
+      <div class="lab">${label}</div>
+      <div class="val ${cls}">${pct(val)}</div>
+      ${gap}
+    </div>`;
+}
+
+function verdictHTML(r){
+  if(r.state === "seat"){
+    return `<b>Tenés un lugar.</b> Estás dentro de los primeros ${CFG.ASIENTOS} — pero el lugar no está cerrado.
+            Cualquiera que termine por encima te lo saca.`;
+  }
+  if(r.state === "qualified"){
+    return `<b>Ya clasificaste.</b> Tenés una ventaja de <span class="em">${fmtAdv(r.advantage)}</span>,
+            pero estás fuera de los ${CFG.ASIENTOS}. Subí en el tablero para entrar a un lugar.`;
+  }
+  const g = [];
+  if(r.ftd < 100) g.push(`${Math.round(100 - r.ftd)}% más en FTD`);
+  if(r.spr < 100) g.push(`${Math.round(100 - r.spr)}% más en Spread`);
+  const need = g.length ? ` Todavía necesitás ${g.join(" y ")}.` : "";
+  return `<b>Todavía no entrás en carrera.</b>${need} Tu ventaja se queda en
+          <span class="em">+0</span> hasta que <span class="em">las dos</span> lleguen a 100% —
+          sin importar cuánto se pase la otra.`;
+}
+
+function showMe(r){
+  const me = document.getElementById("me");
+  me.innerHTML = `
+    <div class="me-top">
+      <span class="me-code">${r.code}</span>
+      <span class="me-country"><span class="flag">${flagOf(r.country)}</span>${r.country}</span>
+      <span class="me-chip">${chipHTML(r.state)}</span>
+    </div>
+    <div class="me-grid">
+      ${gapCell("FTD", r.ftd)}
+      ${gapCell("Spread", r.spr)}
+    </div>
+    <div class="me-verdict">${verdictHTML(r)}</div>`;
+  me.hidden = false;
+}
+function hideMe(){ document.getElementById("me").hidden = true; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Render + buscador
+   ══════════════════════════════════════════════════════════════════════ */
+const board = document.getElementById("board");
+
+function render(q){
+  q = (q || "").trim();
+  const filtering = q.length > 0;
+  const view = filtering ? ORDERED.filter(r => r.code.includes(q)) : ORDERED;
+
+  if(!view.length){
+    board.innerHTML = `<div class="board-empty">Ningún IB Code coincide con “${q}”.</div>`;
+    hideMe();
+    return;
+  }
+
+  let html = "";
+  view.forEach(r=>{
+    html += rowHTML(r);
+    if(!filtering && r.rank === CFG.ASIENTOS && N > CFG.ASIENTOS){
+      html += `<div class="cutline">Línea de corte · Viajan los primeros ${CFG.ASIENTOS}</div>`;
+    }
+  });
+  board.innerHTML = html;
+
+  if(filtering && view.length === 1) showMe(view[0]);
+  else hideMe();
+}
+
+const input = document.getElementById("search");
+const clear = document.getElementById("clear");
+input.addEventListener("input", ()=>{
+  clear.disabled = input.value.length === 0;
+  render(input.value);
+});
+clear.addEventListener("click", ()=>{
+  input.value = "";
+  clear.disabled = true;
+  render("");
+  input.focus();
+});
+
+render("");
+</script>
+</body>
+</html>
