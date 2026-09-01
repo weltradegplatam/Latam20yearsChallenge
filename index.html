@@ -404,8 +404,8 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
    ══════════════════════════════════════════════════════════════════════ */
 const CFG = {
   PERIODO : "21 Ago – 20 Sep 2026",  // texto del período (header)
-  FECHA   : "30 Ago 2026",           // fecha de ESTA actualización (a mano)
-  DIA     : 10,                       // día transcurrido (1 = 21 de agosto)
+  FECHA   : "1 Sep 2026",           // fecha de ESTA actualización (a mano)
+  DIA     : 12,                       // día transcurrido (1 = 21 de agosto)
   DIAS    : 31,                      // días totales del desafío
   ASIENTOS: 25,                      // lugares a Barcelona
   W_FTD   : 0.60,                    // peso de FTD
@@ -427,55 +427,54 @@ const CFG = {
      Los codes 61439, 70579 y 64674 NO van como fila propia: ya están adentro.
    ══════════════════════════════════════════════════════════════════════ */
 const DATA = [
-  { code:"61380",  country:"Colombia",              ftd:0, spr:18.58, prev:28 },
-  { code:"61434",  country:"Colombia",              ftd:2.22, spr:14.69, prev:31 },
-  { code:"61482",  country:"Colombia",              ftd:20, spr:22.7, prev:12 },  // Luis + Ana Hernandez (61482 + 64674)
-  { code:"61487",  country:"Uruguay",               ftd:3.33, spr:7.69, prev:32 },
-  { code:"61495",  country:"Colombia",              ftd:8.27, spr:35.77, prev:10 },
-  { code:"61533",  country:"Colombia",              ftd:0, spr:6.62, prev:41 },
-  { code:"61538",  country:"Guatemala",             ftd:3.33, spr:22.08, prev:19 },
-  { code:"61572",  country:"Colombia",              ftd:3.33, spr:25.36, prev:18 },
-  { code:"61578",  country:"Colombia",              ftd:3.33, spr:4.38, prev:36 },
-  { code:"61694",  country:"Ecuador",               ftd:119.64, spr:27.33, prev:1 },
-  { code:"61726",  country:"Colombia",              ftd:0, spr:21.12, prev:26 },
-  { code:"61786",  country:"Colombia",              ftd:0, spr:18.72, prev:29 },
-  { code:"61809",  country:"Colombia",              ftd:0, spr:12.22, prev:34 },
-  { code:"62037",  country:"Ecuador",               ftd:16.67, spr:12.7, prev:14 },
-  { code:"62042",  country:"México",                ftd:11.76, spr:53.01, prev:8 },
-  { code:"62062",  country:"Colombia",              ftd:10, spr:20.52, prev:15 },
-  { code:"62064",  country:"Colombia",              ftd:31.82, spr:27.14, prev:7 },
-  { code:"62149",  country:"Colombia",              ftd:76.67, spr:0.83, prev:4 },
-  { code:"62225",  country:"Colombia",              ftd:70, spr:19.43, prev:3 },
-  { code:"62267",  country:"Colombia",              ftd:10, spr:17.23, prev:22 },
-  { code:"62274",  country:"Ecuador",               ftd:13.33, spr:23.49, prev:11 },
-  { code:"62275",  country:"Colombia",              ftd:0, spr:21.06, prev:23 },
-  { code:"62302",  country:"República Dominicana",  ftd:0, spr:0.52, prev:48 },
-  { code:"62396",  country:"Colombia",              ftd:6.67, spr:16.9, prev:21 },
-  { code:"62421",  country:"Venezuela",             ftd:0, spr:6.94, prev:40 },
-  { code:"62468",  country:"Ecuador",               ftd:3.13, spr:15.58, prev:27 },
-  { code:"62594",  country:"Colombia",              ftd:0, spr:9, prev:37 },
-  { code:"62661",  country:"Colombia",              ftd:0, spr:0.13, prev:49 },
-  { code:"62670",  country:"Colombia",              ftd:6.67, spr:12.36, prev:24 },
-  { code:"62997",  country:"Ecuador",               ftd:0, spr:1.65, prev:47 },
-  { code:"63770",  country:"Colombia",              ftd:40, spr:33.27, prev:5 },
-  { code:"64035",  country:"Colombia",              ftd:0, spr:15.72, prev:38 },
-  { code:"64298",  country:"Colombia",              ftd:0, spr:3.72, prev:45 },
-  { code:"65068",  country:"Costa Rica",            ftd:4.88, spr:15.43, prev:25 },
-  { code:"65602",  country:"Colombia",              ftd:0, spr:7.57, prev:39 },
-  { code:"65662",  country:"República Dominicana",  ftd:0, spr:2.33, prev:44 },
-  { code:"67290",  country:"Bolivia",               ftd:0, spr:1.61, prev:46 },
-  { code:"69127",  country:"Venezuela",             ftd:0, spr:3.43, prev:43 },
-  { code:"69810",  country:"Ecuador",               ftd:72, spr:23.41, prev:2 },
-  { code:"70130",  country:"Colombia",              ftd:13.95, spr:18.89, prev:13 },
-  { code:"76322",  country:"Costa Rica",            ftd:10, spr:72.55, prev:6 },
-  { code:"78870",  country:"Colombia",              ftd:3.33, spr:9.26, prev:33 },  // Jonathan Sandoval (78870 + 70579)
-  { code:"80698",  country:"México",                ftd:3.41, spr:16.5, prev:30 },
-  { code:"81579",  country:"República Dominicana",  ftd:0, spr:5.48, prev:42 },
-  { code:"86157",  country:"Colombia",              ftd:13.33, spr:6.38, prev:17 },
-  { code:"91423",  country:"Venezuela",             ftd:16.98, spr:26.73, prev:9 },
-  { code:"94693",  country:"Colombia",              ftd:6.67, spr:20.45, prev:16 },  // Kate Trader (94693 + 61439)
-  { code:"98392",  country:"Costa Rica",            ftd:13.33, spr:6.13, prev:20 },
-  { code:"101893", country:"Colombia",              ftd:3.33, spr:4.12, prev:35 },
+  { code:"61380",  country:"Colombia",              ftd:0, spr:21.17, prev:30 },
+  { code:"61434",  country:"Colombia",              ftd:6.67, spr:16.72, prev:31 },
+  { code:"61482",  country:"Colombia",              ftd:20, spr:26.49, prev:9 },  // Luis + Ana Hernandez (61482 + 64674)
+  { code:"61487",  country:"Uruguay",               ftd:3.33, spr:10.14, prev:34 },
+  { code:"61495",  country:"Colombia",              ftd:7.52, spr:39.44, prev:11 },
+  { code:"61533",  country:"Colombia",              ftd:0, spr:8.77, prev:41 },
+  { code:"61538",  country:"Guatemala",             ftd:3.33, spr:24.91, prev:19 },
+  { code:"61572",  country:"Colombia",              ftd:3.33, spr:30.4, prev:18 },
+  { code:"61578",  country:"Colombia",              ftd:3.33, spr:10.8, prev:36 },
+  { code:"61694",  country:"Ecuador",               ftd:128.57, spr:31.71, prev:1 },
+  { code:"61726",  country:"Colombia",              ftd:0, spr:25.25, prev:26 },
+  { code:"61809",  country:"Colombia",              ftd:3.33, spr:19.42, prev:35 },
+  { code:"62037",  country:"Ecuador",               ftd:16.67, spr:16.74, prev:14 },
+  { code:"62042",  country:"México",                ftd:12.75, spr:66.49, prev:8 },
+  { code:"62062",  country:"Colombia",              ftd:23.33, spr:24.77, prev:15 },
+  { code:"62064",  country:"Colombia",              ftd:48.48, spr:32.6, prev:7 },
+  { code:"62149",  country:"Colombia",              ftd:100, spr:0.9, prev:4 },
+  { code:"62225",  country:"Colombia",              ftd:76.67, spr:26.62, prev:3 },
+  { code:"62267",  country:"Colombia",              ftd:10, spr:20.48, prev:16 },
+  { code:"62274",  country:"Ecuador",               ftd:13.33, spr:25.91, prev:12 },
+  { code:"62275",  country:"Colombia",              ftd:0, spr:34.12, prev:27 },
+  { code:"62302",  country:"República Dominicana",  ftd:0, spr:0.64, prev:48 },
+  { code:"62396",  country:"Colombia",              ftd:10, spr:27.03, prev:20 },
+  { code:"62421",  country:"Venezuela",             ftd:0, spr:7.38, prev:40 },
+  { code:"62468",  country:"Ecuador",               ftd:3.13, spr:18.9, prev:28 },
+  { code:"62594",  country:"Colombia",              ftd:0, spr:11.08, prev:38 },
+  { code:"62661",  country:"Colombia",              ftd:0, spr:0.23, prev:49 },
+  { code:"62670",  country:"Colombia",              ftd:6.67, spr:14.81, prev:24 },
+  { code:"62997",  country:"Ecuador",               ftd:0, spr:1.74, prev:46 },
+  { code:"63770",  country:"Colombia",              ftd:43.33, spr:41.15, prev:5 },
+  { code:"64035",  country:"Colombia",              ftd:3.33, spr:17.6, prev:32 },
+  { code:"64298",  country:"Colombia",              ftd:0, spr:5.18, prev:43 },
+  { code:"65068",  country:"Costa Rica",            ftd:7.32, spr:17.56, prev:23 },
+  { code:"65602",  country:"Colombia",              ftd:0, spr:8.58, prev:39 },
+  { code:"65662",  country:"República Dominicana",  ftd:0, spr:3, prev:45 },
+  { code:"67290",  country:"Bolivia",               ftd:0, spr:1.8, prev:47 },
+  { code:"69127",  country:"Venezuela",             ftd:0, spr:3.68, prev:44 },
+  { code:"69810",  country:"Ecuador",               ftd:102, spr:31.91, prev:2 },
+  { code:"70130",  country:"Colombia",              ftd:13.95, spr:24.25, prev:13 },
+  { code:"76322",  country:"Costa Rica",            ftd:10.77, spr:82, prev:6 },
+  { code:"78870",  country:"Colombia",              ftd:3.33, spr:10.85, prev:33 },  // Jonathan Sandoval (78870 + 70579)
+  { code:"80698",  country:"México",                ftd:3.41, spr:18.66, prev:25 },
+  { code:"81579",  country:"República Dominicana",  ftd:0, spr:5.5, prev:42 },
+  { code:"86157",  country:"Colombia",              ftd:20, spr:7.2, prev:21 },
+  { code:"91423",  country:"Venezuela",             ftd:18.87, spr:29.92, prev:10 },
+  { code:"94693",  country:"Colombia",              ftd:6.67, spr:25.99, prev:17 },  // Kate Trader (94693 + 61439)
+  { code:"98392",  country:"Costa Rica",            ftd:16.67, spr:9.48, prev:22 },
+  { code:"101893", country:"Colombia",              ftd:3.33, spr:4.5, prev:37 },
 ];
 
 /* ══════════════════════════════════════════════════════════════════════
