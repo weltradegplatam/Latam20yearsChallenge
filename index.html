@@ -256,8 +256,36 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
 .c-num .big.orange{color:var(--orange-lit)}
 .c-num .cap{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:6px}
 
-.cutline{display:flex;align-items:center;gap:14px;margin:5px 2px;color:var(--gold);font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
-.cutline::before,.cutline::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,179,58,.4),transparent)}
+.cutline{display:flex;align-items:center;gap:14px;margin:10px 2px}
+.cutline::before,.cutline::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,179,58,.55),transparent)}
+.cut-pill{font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:8px 16px;border-radius:999px;background:linear-gradient(100deg,rgba(232,179,58,.2),rgba(242,113,28,.13));border:1px solid rgba(232,179,58,.6);box-shadow:0 0 20px rgba(232,179,58,.14)}
+
+/* encabezados de sección (ganadores / segunda oportunidad) */
+/* banda de sección (ganadores / segunda oportunidad) */
+.zone-banner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-radius:14px}
+.zone-banner .zb-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em;display:flex;align-items:center;gap:11px}
+.zone-banner .zb-title::before{content:"";width:4px;height:22px;border-radius:3px;flex:none}
+.zone-banner .zb-sub{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.zone-banner.win{padding:6px 2px 2px}
+.zone-banner.win .zb-title{color:var(--gold)}
+.zone-banner.win .zb-title::before{background:linear-gradient(var(--gold),#F7D774)}
+.zone-banner.sc .zb-title{color:#fff}
+.zone-banner.sc .zb-title::before{background:linear-gradient(var(--orange),var(--gold))}
+.zone-banner.sc .zb-sub{color:var(--orange-lit)}
+
+/* zona destacada de la segunda oportunidad (fondo más claro y frío) */
+.sc-zone{margin-top:28px;border-radius:18px;border:1px solid var(--line-hot);border-top:2px solid rgba(242,113,28,.55);background:linear-gradient(180deg,#141B2A 0%,#0E131E 100%);padding:0 12px 14px;display:flex;flex-direction:column;gap:9px;overflow:hidden}
+.sc-zone .zone-banner.sc{margin:0 -12px 6px;border-radius:0;padding:16px 16px 15px;background:linear-gradient(100deg,rgba(242,113,28,.22),rgba(58,85,247,.12));border-bottom:1px solid var(--line-hot)}
+.sc-zone .zone-banner.sc .zb-title{font-size:21px}
+
+/* chip de ganador (no campeón): dorado con contorno, para que el campeón siga resaltando */
+.chip-win{background:rgba(232,179,58,.12);color:var(--gold);border:1px solid rgba(232,179,58,.5)}
+
+/* chip campeón + realce de la fila del campeón */
+.chip-champ{background:linear-gradient(100deg,#F7D774,var(--gold));color:#0A0A0A;box-shadow:0 0 0 1px rgba(232,179,58,.45)}
+.row.won .c-move svg{display:block;margin:0 auto}
+.row.champ{border-color:rgba(232,179,58,.6);background:linear-gradient(100deg,rgba(232,179,58,.16),rgba(242,113,28,.08)),var(--panel);box-shadow:0 0 30px rgba(232,179,58,.13)}
+.row.champ .c-pos{color:var(--gold)}
 
 .foot{text-align:center;margin-top:48px;padding-top:26px;border-top:1px solid var(--line);color:var(--dim);font-size:12.5px;line-height:1.8}
 
@@ -281,6 +309,10 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
   .c-num .big{font-size:23px}
   .me-grid{grid-template-columns:1fr}
   .me-metric+.me-metric{border-left:none;border-top:1px solid var(--line)}
+  .zone-banner{flex-wrap:wrap}
+  .zone-banner .zb-sub{white-space:normal;flex-basis:100%}
+  .cutline{gap:8px}
+  .cut-pill{white-space:normal;text-align:center;font-size:9.5px;letter-spacing:.1em;padding:8px 12px}
 }
 @media(max-width:440px){
   .stats{grid-template-columns:1fr 1fr}
@@ -305,7 +337,7 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
     </div>
 
     <h1>Rumbo a <span class="bcn">Barcelona</span></h1>
-    <p class="sub">Desafío cerrado. Estos son los clasificados que viajan a Barcelona.</p>
+    <p class="sub">Ronda 1 cerrada: 8 partners ya viajan. La segunda oportunidad sigue abierta hasta el 7 de octubre.</p>
 
     <div class="hero-meta">
       <span class="pill" id="pill-period"></span>
@@ -333,8 +365,8 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
     </article>
     <article class="rule">
       <div class="n">03</div>
-      <h3>25 lugares</h3>
-      <p>Llegar al 100% te habilita, no te asegura. Viajan los 25 de mejor desempeño.</p>
+      <h3>17 lugares abiertos</h3>
+      <p>Los 8 primeros ya viajan. Quedan 17 lugares para la segunda oportunidad, hasta el 7 de octubre.</p>
     </article>
   </section>
 
@@ -403,11 +435,12 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
    CONFIG  —  se edita a mano, semana a semana
    ══════════════════════════════════════════════════════════════════════ */
 const CFG = {
-  PERIODO : "21 Ago – 20 Sep 2026",  // texto del período (header)
-  FECHA   : "20 Sep 2026",           // fecha de ESTA actualización (a mano)
-  DIA     : 31,                       // día transcurrido (1 = 21 de agosto)
-  DIAS    : 31,                      // días totales del desafío
-  ASIENTOS: 25,                      // lugares a Barcelona
+  PERIODO : "21 Ago – 7 Oct 2026",   // período extendido (2ª oportunidad)
+  FECHA   : "25 Sep 2026",           // fecha de ESTA actualización (a mano)
+  DIA     : 36,                       // día transcurrido (1 = 21 de agosto; 35 = 24 sep)
+  DIAS    : 48,                      // días totales con el nuevo plazo (21 ago → 7 oct)
+  ASIENTOS: 25,                      // lugares totales a Barcelona
+  CIERRE2 : "7 Oct 2026",            // cierre de la segunda oportunidad
   W_FTD   : 0.60,                    // peso de FTD
   W_SPR   : 0.40                     // peso de Spread
 };
@@ -427,45 +460,45 @@ const CFG = {
      Los codes 61439, 70579 y 64674 NO van como fila propia: ya están adentro.
    ══════════════════════════════════════════════════════════════════════ */
 const DATA = [
-  { code:"61380",  country:"Colombia",              ftd:10, spr:85.33, prev:23 },
-  { code:"61482",  country:"Colombia",              ftd:113.33, spr:125.53, prev:8 },  // Luis + Ana Hernandez (61482 + 64674)
-  { code:"61487",  country:"Uruguay",               ftd:6.67, spr:43.56, prev:30 },
-  { code:"61495",  country:"Colombia",              ftd:116.54, spr:130.91, prev:7 },
-  { code:"61538",  country:"Guatemala",             ftd:20, spr:47.51, prev:27 },
-  { code:"61572",  country:"Colombia",              ftd:23.33, spr:95.07, prev:20 },
-  { code:"61694",  country:"Ecuador",               ftd:201.79, spr:110.94, prev:1 },
-  { code:"61726",  country:"Colombia",              ftd:0, spr:46.85, prev:31 },
-  { code:"61809",  country:"Colombia",              ftd:20, spr:72.47, prev:24 },
-  { code:"62037",  country:"Ecuador",               ftd:43.33, spr:121.95, prev:13 },
-  { code:"62042",  country:"México",                ftd:111.76, spr:218.11, prev:2 },
-  { code:"62062",  country:"Colombia",              ftd:126.67, spr:125.84, prev:6 },
-  { code:"62064",  country:"Colombia",              ftd:127.27, spr:144.77, prev:4 },
-  { code:"62149",  country:"Colombia",              ftd:153.33, spr:11.48, prev:15 },
-  { code:"62225",  country:"Colombia",              ftd:96.67, spr:102.06, prev:9 },
-  { code:"62267",  country:"Colombia",              ftd:40, spr:88.95, prev:17 },
-  { code:"62274",  country:"Ecuador",               ftd:13.33, spr:72.43, prev:25 },
-  { code:"62275",  country:"Colombia",              ftd:53.33, spr:62.87, prev:18 },
-  { code:"62396",  country:"Colombia",              ftd:43.33, spr:125.63, prev:14 },
-  { code:"62421",  country:"Venezuela",             ftd:6.67, spr:17.28, prev:34 },
-  { code:"62468",  country:"Ecuador",               ftd:6.25, spr:50.18, prev:29 },
-  { code:"62670",  country:"Colombia",              ftd:23.33, spr:74.44, prev:21 },
-  { code:"62997",  country:"Ecuador",               ftd:0, spr:9.76, prev:39 },
-  { code:"63770",  country:"Colombia",              ftd:80, spr:302.95, prev:11 },
-  { code:"65068",  country:"Costa Rica",            ftd:34.15, spr:46.42, prev:26 },
-  { code:"65662",  country:"República Dominicana",  ftd:0, spr:21.66, prev:35 },
-  { code:"67290",  country:"Bolivia",               ftd:23.33, spr:7.42, prev:33 },
-  { code:"69127",  country:"Venezuela",             ftd:0, spr:11.05, prev:38 },
-  { code:"69810",  country:"Ecuador",               ftd:154, spr:162.6, prev:3 },
-  { code:"70130",  country:"Colombia",              ftd:53.49, spr:106.71, prev:12 },
-  { code:"76322",  country:"Costa Rica",            ftd:25.38, spr:100.53, prev:19 },
-  { code:"78870",  country:"Colombia",              ftd:3.33, spr:41.64, prev:32 },  // Jonathan Sandoval (78870 + 70579)
-  { code:"80698",  country:"México",                ftd:20.45, spr:76.54, prev:22 },
-  { code:"81579",  country:"República Dominicana",  ftd:0, spr:12.37, prev:37 },
-  { code:"86157",  country:"Colombia",              ftd:66.67, spr:58.12, prev:16 },
-  { code:"91423",  country:"Venezuela",             ftd:100, spr:98, prev:10 },
-  { code:"94693",  country:"Colombia",              ftd:110, spr:149.11, prev:5 },  // Kate Trader (94693 + 61439)
-  { code:"98392",  country:"Costa Rica",            ftd:33.33, spr:10.87, prev:28 },
-  { code:"101893", country:"Colombia",              ftd:6.67, spr:8.35, prev:36 },
+  { code:"61380",  country:"Colombia",              ftd:13.33, spr:85.12, prev:16 },
+  { code:"61482",  country:"Colombia",              ftd:113.33, spr:125.53, prev:0 },  // Luis + Ana Hernandez (61482 + 64674)
+  { code:"61487",  country:"Uruguay",               ftd:6.67, spr:44.97, prev:22 },
+  { code:"61495",  country:"Colombia",              ftd:116.54, spr:130.91, prev:0 },
+  { code:"61538",  country:"Guatemala",             ftd:20, spr:45.95, prev:19 },
+  { code:"61572",  country:"Colombia",              ftd:23.33, spr:93.1, prev:12 },
+  { code:"61694",  country:"Ecuador",               ftd:201.79, spr:110.94, prev:0 },
+  { code:"61726",  country:"Colombia",              ftd:0, spr:46.88, prev:23 },
+  { code:"61809",  country:"Colombia",              ftd:16.67, spr:74.46, prev:15 },
+  { code:"62037",  country:"Ecuador",               ftd:53.33, spr:129.13, prev:5 },
+  { code:"62042",  country:"México",                ftd:111.76, spr:218.11, prev:0 },
+  { code:"62062",  country:"Colombia",              ftd:126.67, spr:125.84, prev:0 },
+  { code:"62064",  country:"Colombia",              ftd:127.27, spr:144.77, prev:0 },
+  { code:"62149",  country:"Colombia",              ftd:150, spr:11.7, prev:7 },
+  { code:"62225",  country:"Colombia",              ftd:100, spr:116.77, prev:2 },
+  { code:"62267",  country:"Colombia",              ftd:40, spr:97.98, prev:9 },
+  { code:"62274",  country:"Ecuador",               ftd:13.33, spr:74.23, prev:18 },
+  { code:"62275",  country:"Colombia",              ftd:53.33, spr:62.9, prev:10 },
+  { code:"62396",  country:"Colombia",              ftd:43.33, spr:131.05, prev:6 },
+  { code:"62421",  country:"Venezuela",             ftd:0, spr:18.01, prev:26 },
+  { code:"62468",  country:"Ecuador",               ftd:6.25, spr:47.92, prev:21 },
+  { code:"62670",  country:"Colombia",              ftd:20, spr:84.72, prev:13 },
+  { code:"62997",  country:"Ecuador",               ftd:0, spr:9.63, prev:31 },
+  { code:"63770",  country:"Colombia",              ftd:100, spr:309.47, prev:3 },
+  { code:"65068",  country:"Costa Rica",            ftd:46.34, spr:47.61, prev:17 },
+  { code:"65662",  country:"República Dominicana",  ftd:0, spr:21.8, prev:27 },
+  { code:"67290",  country:"Bolivia",               ftd:26.67, spr:9.53, prev:25 },
+  { code:"69127",  country:"Venezuela",             ftd:0, spr:11.68, prev:30 },
+  { code:"69810",  country:"Ecuador",               ftd:154, spr:162.6, prev:0 },
+  { code:"70130",  country:"Colombia",              ftd:60.47, spr:123.63, prev:4 },
+  { code:"76322",  country:"Costa Rica",            ftd:28.46, spr:103.67, prev:11 },
+  { code:"78870",  country:"Colombia",              ftd:3.33, spr:44.77, prev:24 },  // Jonathan Sandoval (78870 + 70579)
+  { code:"80698",  country:"México",                ftd:19.32, spr:77.71, prev:14 },
+  { code:"81579",  country:"República Dominicana",  ftd:0, spr:11.98, prev:29 },
+  { code:"86157",  country:"Colombia",              ftd:76.67, spr:58.73, prev:8 },
+  { code:"91423",  country:"Venezuela",             ftd:100, spr:106.83, prev:1 },  // FTD fijo en 100% (ya logrado) — solo actualizar Spread
+  { code:"94693",  country:"Colombia",              ftd:110, spr:149.11, prev:0 },  // Kate Trader (94693 + 61439)
+  { code:"98392",  country:"Costa Rica",            ftd:36.67, spr:11.07, prev:20 },
+  { code:"101893", country:"Colombia",              ftd:10, spr:7.33, prev:28 },
 ];
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -484,37 +517,59 @@ const flagOf = c => FLAGS[norm(c)] || "🏳️";
 /* ══════════════════════════════════════════════════════════════════════
    MÉTRICAS  —  todo se deriva del array. Nada hardcodeado.
    ══════════════════════════════════════════════════════════════════════ */
-const PACE = CFG.DIA / CFG.DIAS * 100;                 // dónde deberías estar hoy
-const DAYS_LEFT = Math.max(0, CFG.DIAS - CFG.DIA + 1); // constante del config
+const PACE = CFG.DIA / CFG.DIAS * 100;                 // dónde deberías estar hoy (plazo al 7 oct)
+const DAYS_LEFT = Math.max(0, CFG.DIAS - CFG.DIA + 1); // días hasta el 7 oct (constante del config)
+
+/* Ganadores de la RONDA 1 — clasificaron antes del 20/9, quedan congelados y ya viajan.
+   Para actualizar la segunda oportunidad NO se tocan estos: solo se refrescan los demás. */
+const WINNERS = ["61694","69810","62042","62064","62062","94693","61495","61482"];
 
 function compute(p){
+  const won       = WINNERS.includes(p.code);
   const qualified = p.ftd >= 100 && p.spr >= 100;
   const score     = CFG.W_FTD * p.ftd + CFG.W_SPR * p.spr;      // ponderado, sin tope
   const advantage = score - 100;                                // ventaja
   const avance    = CFG.W_FTD * Math.min(p.ftd,100) + CFG.W_SPR * Math.min(p.spr,100); // topado a 100
   const weakest   = Math.min(p.ftd, p.spr);                     // desempate
-  return {...p, qualified, score, advantage, avance, weakest};
+  return {...p, won, qualified, score, advantage, avance, weakest};
 }
 
-let ROWS = DATA.map(compute);
-const qual = ROWS.filter(r=>r.qualified).sort((a,b)=>
-  b.score - a.score || b.weakest - a.weakest || a.code.localeCompare(b.code));
-const race = ROWS.filter(r=>!r.qualified).sort((a,b)=>
-  b.avance - a.avance || a.code.localeCompare(b.code));
-const ORDERED = [...qual, ...race];
-ORDERED.forEach((r,i)=>{
-  r.rank  = i + 1;
-  r.seat  = r.qualified && r.rank <= CFG.ASIENTOS;
-  r.state = r.seat ? "seat" : (r.qualified ? "qualified" : "race");
-});
+const ROWS = DATA.map(compute);
 
-const N      = ORDERED.length;
-const N_QUAL = qual.length;
-const AVG    = N ? ORDERED.reduce((s,r)=>s+r.avance,0) / N : 0;
-const CUT    = Math.min(N_QUAL, CFG.ASIENTOS);   // la línea se posa bajo los calificados (máx 25)
-const CUT_LABEL = N_QUAL >= CFG.ASIENTOS
-  ? `Línea de corte · Viajan los primeros ${CFG.ASIENTOS}`
-  : `Línea de corte · ${N_QUAL} ${N_QUAL===1?'clasificado':'clasificados'} hasta ahora`;
+/* ── RONDA 1 · GANADORES (congelados, orden por ventaja; el 1º es el campeón) ── */
+const WON = ROWS.filter(r=>r.won).sort((a,b)=>
+  b.score - a.score || b.weakest - a.weakest || a.code.localeCompare(b.code));
+WON.forEach((r,i)=>{ r.rank = i+1; r.champion = (i===0); r.section = "won"; });
+
+/* ── SEGUNDA OPORTUNIDAD (el resto sigue compitiendo por los lugares que quedan) ── */
+const REMAINING = Math.max(0, CFG.ASIENTOS - WON.length);   // 25 − ganadores = lugares abiertos
+const POOL    = ROWS.filter(r=>!r.won);
+const sc_qual = POOL.filter(r=>r.qualified).sort((a,b)=>
+  b.score - a.score || b.weakest - a.weakest || a.code.localeCompare(b.code));
+const sc_race = POOL.filter(r=>!r.qualified).sort((a,b)=>
+  b.avance - a.avance || a.code.localeCompare(b.code));
+const SC = [...sc_qual, ...sc_race];
+SC.forEach((r,i)=>{
+  r.rank  = i + 1;
+  r.seat  = r.qualified && r.rank <= REMAINING;
+  r.state = r.seat ? "seat" : (r.qualified ? "qualified" : "race");
+  r.section = "sc";
+});
+const ALL = [...WON, ...SC];
+
+const N       = ROWS.length;
+const N_WON   = WON.length;
+const N_SC    = SC.length;
+const SC_QUAL = sc_qual.length;
+const AVG     = N_SC ? SC.reduce((s,r)=>s+r.avance,0) / N_SC : 0;   // avance prom. de la 2ª oport.
+const CUT     = Math.min(SC_QUAL, REMAINING);   // línea de corte de la 2ª oportunidad
+const CUT_LABEL = SC_QUAL >= REMAINING
+  ? `Línea de corte · ${REMAINING} lugares cubiertos`
+  : `Línea de corte · ${SC_QUAL} ${SC_QUAL===1?'nuevo clasificado':'nuevos clasificados'} · ${REMAINING} lugares abiertos`;
+
+/* Íconos (sin emojis: SVG) para los ganadores congelados */
+const crownSVG = `<svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8.5l4 3.2L12 5l5 6.7 4-3.2-1.7 9.5H4.7L3 8.5z" fill="#E8B33A"/><circle cx="3" cy="8.5" r="1.4" fill="#F7D774"/><circle cx="21" cy="8.5" r="1.4" fill="#F7D774"/><circle cx="12" cy="4.6" r="1.5" fill="#F7D774"/></svg>`;
+const checkSVG = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6.5" stroke="#E8B33A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 /* ══════════════════════════════════════════════════════════════════════
    Formato (decimales con coma)
@@ -539,13 +594,13 @@ function missingText(r){
    Header + stats
    ══════════════════════════════════════════════════════════════════════ */
 document.getElementById("pill-period").textContent = CFG.PERIODO;
-document.getElementById("pill-date").textContent   = "Resultados finales · " + CFG.FECHA;
+document.getElementById("pill-date").textContent   = "2ª oportunidad · quedan " + DAYS_LEFT + " días";
 
 document.getElementById("stats").innerHTML = [
-  ["Participantes", `${N}`],
-  ["Clasificados",  `${N_QUAL}<small> / ${CFG.ASIENTOS}</small>`],
-  ["Avance prom.",  `${Math.round(AVG)}<small>%</small>`],
-  ["Estado",`Cerrado`]
+  ["Ganadores",        `${N_WON}<small> / ${CFG.ASIENTOS}</small>`],
+  ["Lugares abiertos", `${REMAINING}`],
+  ["En 2ª oportunidad",`${N_SC}`],
+  ["Cierra",           `${CFG.CIERRE2.replace(" 2026","")}`]
 ].map(([k,v])=>`<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -559,54 +614,63 @@ function moveHTML(r){
   return `<span class="mv mv-same" title="Sin cambios">–</span>`;
 }
 
-function kpiBar(lab, val){
+function kpiBar(lab, val, showPace){
   const cls = val >= 100 ? "hi" : "lo";
   const w   = Math.max(0, Math.min(100, val));
+  const pace = showPace ? `<div class="kpi-pace" style="left:${PACE}%"></div>` : "";
   return `<div class="kpi">
       <span class="kpi-lab">${lab}</span>
       <div class="kpi-track">
         <div class="kpi-fill ${cls}" style="width:${w}%"></div>
-        <div class="kpi-pace" style="left:${PACE}%"></div>
+        ${pace}
       </div>
       <span class="kpi-val ${cls}">${pct(val)}</span>
     </div>`;
 }
 
 function chipHTML(state){
-  return state === "seat"      ? `<span class="chip chip-seat">Lugar</span>`
+  return state === "champion"  ? `<span class="chip chip-champ">Campeón</span>`
+       : state === "won"       ? `<span class="chip chip-win">Rumbo a Barcelona</span>`
+       : state === "seat"      ? `<span class="chip chip-seat">Clasificado</span>`
        : state === "qualified" ? `<span class="chip chip-q">Clasificado</span>`
        :                         `<span class="chip chip-race">En carrera</span>`;
 }
 
 function rowHTML(r){
-  // barra principal (composición): dorado si lugar · azul si clasificado o al ritmo · naranja si atrasado
+  const frozen = r.section === "won";   // ganador de Ronda 1: sin ritmo, sin flecha
+
+  // barra principal (composición): dorado si lugar/ganador · azul si clasificado o al ritmo · naranja si atrasado
   let barCls, fillW;
-  if(r.state === "seat"){ barCls = "bar-seat"; fillW = 100; }
+  if(frozen || r.state === "seat"){ barCls = "bar-seat"; fillW = 100; }
   else if(r.qualified){   barCls = "bar-blue"; fillW = 100; }
   else { fillW = r.avance; barCls = (r.avance >= PACE) ? "bar-blue" : "bar-orange"; }
 
   let big, bigCls, cap;
-  if(r.qualified){ big = fmtAdv(r.advantage); bigCls = r.seat ? "gold" : "blue"; cap = "ventaja"; }
+  if(frozen || r.qualified){ big = fmtAdv(r.advantage); bigCls = (frozen || r.seat) ? "gold" : "blue"; cap = "ventaja"; }
   else { big = pct(r.avance); bigCls = "orange"; cap = "avance"; }
 
-  const miss = (r.state === "race") ? missingText(r) : "";
+  const miss      = (r.state === "race") ? missingText(r) : "";
+  const chipState = frozen ? (r.champion ? "champion" : "won") : r.state;
+  const rowCls    = frozen ? `row seat won${r.champion?" champ":""}` : `row ${r.seat?"seat":""}`;
+  const moveCell  = frozen ? (r.champion ? crownSVG : checkSVG) : moveHTML(r);
+  const paceMark  = frozen ? "" : `<div class="pace" style="left:${PACE}%"></div>`;
 
-  return `<div class="row ${r.seat?'seat':''}">
+  return `<div class="${rowCls}">
     <div class="c-pos">${r.rank}</div>
-    <div class="c-move">${moveHTML(r)}</div>
+    <div class="c-move">${moveCell}</div>
     <div class="c-ident">
       <div class="code">${r.code}</div>
       <div class="country"><span class="flag">${flagOf(r.country)}</span><span class="nm">${r.country}</span></div>
     </div>
-    <div class="c-pct">${chipHTML(r.state)}</div>
+    <div class="c-pct">${chipHTML(chipState)}</div>
     <div class="c-bar">
       <div class="bar">
         <div class="fill ${barCls}" style="width:${Math.max(0,Math.min(100,fillW))}%"></div>
-        <div class="pace" style="left:${PACE}%"></div>
+        ${paceMark}
       </div>
       <div class="kpi-bars">
-        ${kpiBar("FTD", r.ftd)}
-        ${kpiBar("SPR", r.spr)}
+        ${kpiBar("FTD", r.ftd, !frozen)}
+        ${kpiBar("SPR", r.spr, !frozen)}
       </div>
       <div class="miss" ${miss?'':'hidden'}>${miss}</div>
     </div>
@@ -633,13 +697,18 @@ function gapCell(label, val){
 }
 
 function verdictHTML(r){
+  if(r.section === "won"){
+    return r.champion
+      ? `<b>¡Campeón!</b> Cerraste la Ronda 1 en lo más alto, con una ventaja de <span class="em">${fmtAdv(r.advantage)}</span>. Tu lugar en Barcelona ya está asegurado.`
+      : `<b>¡Ya ganaste tu lugar!</b> Clasificaste en la Ronda 1 con una ventaja de <span class="em">${fmtAdv(r.advantage)}</span>. Viajás a Barcelona.`;
+  }
   if(r.state === "seat"){
-    return `<b>Tenés un lugar.</b> Estás dentro de los primeros ${CFG.ASIENTOS} — pero el lugar no está cerrado.
-            Cualquiera que termine por encima te lo saca.`;
+    return `<b>Tenés un lugar.</b> Estás dentro de los ${REMAINING} lugares abiertos — pero no está cerrado.
+            Cualquiera que termine por encima antes del ${CFG.CIERRE2} te lo saca.`;
   }
   if(r.state === "qualified"){
     return `<b>Ya clasificaste.</b> Tenés una ventaja de <span class="em">${fmtAdv(r.advantage)}</span>,
-            pero estás fuera de los ${CFG.ASIENTOS}. Subí en el tablero para entrar a un lugar.`;
+            pero estás fuera de los ${REMAINING} lugares. Subí en el tablero para entrar.`;
   }
   const g = [];
   if(r.ftd < 100) g.push(`${Math.round(100 - r.ftd)}% más en FTD`);
@@ -652,11 +721,12 @@ function verdictHTML(r){
 
 function showMe(r){
   const me = document.getElementById("me");
+  const chipState = r.section === "won" ? (r.champion ? "champion" : "won") : r.state;
   me.innerHTML = `
     <div class="me-top">
       <span class="me-code">${r.code}</span>
       <span class="me-country"><span class="flag">${flagOf(r.country)}</span>${r.country}</span>
-      <span class="me-chip">${chipHTML(r.state)}</span>
+      <span class="me-chip">${chipHTML(chipState)}</span>
     </div>
     <div class="me-grid">
       ${gapCell("FTD", r.ftd)}
@@ -675,26 +745,44 @@ const board = document.getElementById("board");
 function render(q){
   q = (q || "").trim();
   const filtering = q.length > 0;
-  const view = filtering ? ORDERED.filter(r => r.code.includes(q)) : ORDERED;
 
-  if(!view.length){
-    board.innerHTML = `<div class="board-empty">Ningún IB Code coincide con “${q}”.</div>`;
-    hideMe();
+  if(filtering){
+    const view = ALL.filter(r => r.code.includes(q));
+    if(!view.length){
+      board.innerHTML = `<div class="board-empty">Ningún IB Code coincide con “${q}”.</div>`;
+      hideMe();
+      return;
+    }
+    board.innerHTML = view.map(rowHTML).join("");
+    if(view.length === 1) showMe(view[0]); else hideMe();
     return;
   }
 
+  hideMe();
   let html = "";
-  view.forEach(r=>{
+
+  // ── Ganadores de la Ronda 1 (congelados) ──
+  html += `<div class="zone-banner win">
+      <span class="zb-title">Ganadores · ya viajan a Barcelona</span>
+      <span class="zb-sub">${N_WON} asegurados</span>
+    </div>`;
+  WON.forEach(r => { html += rowHTML(r); });
+
+  // ── Segunda oportunidad (zona destacada, en vivo) ──
+  html += `<div class="sc-zone">
+      <div class="zone-banner sc">
+        <span class="zb-title">Segunda oportunidad</span>
+        <span class="zb-sub">${REMAINING} lugares · hasta el ${CFG.CIERRE2} · quedan ${DAYS_LEFT} días</span>
+      </div>`;
+  SC.forEach(r=>{
     html += rowHTML(r);
-    // línea de corte: solo si hay al menos un calificado, y se posa tras el último
-    if(!filtering && CUT >= 1 && r.rank === CUT && N > CUT){
-      html += `<div class="cutline">${CUT_LABEL}</div>`;
+    if(CUT >= 1 && r.rank === CUT && N_SC > CUT){
+      html += `<div class="cutline"><span class="cut-pill">${CUT_LABEL}</span></div>`;
     }
   });
-  board.innerHTML = html;
+  html += `</div>`;   // /sc-zone
 
-  if(filtering && view.length === 1) showMe(view[0]);
-  else hideMe();
+  board.innerHTML = html;
 }
 
 const input = document.getElementById("search");
