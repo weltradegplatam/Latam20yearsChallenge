@@ -436,8 +436,8 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
    ══════════════════════════════════════════════════════════════════════ */
 const CFG = {
   PERIODO : "21 Ago – 7 Oct 2026",   // período extendido (2ª oportunidad)
-  FECHA   : "27 Sep 2026",           // fecha de ESTA actualización (a mano)
-  DIA     : 38,                       // día transcurrido (1 = 21 de agosto; 35 = 24 sep)
+  FECHA   : "29 Sep 2026",           // fecha de ESTA actualización (a mano)
+  DIA     : 40,                       // día transcurrido (1 = 21 de agosto; 35 = 24 sep)
   DIAS    : 48,                      // días totales con el nuevo plazo (21 ago → 7 oct)
   ASIENTOS: 25,                      // lugares totales a Barcelona
   CIERRE2 : "7 Oct 2026",            // cierre de la segunda oportunidad
@@ -460,46 +460,46 @@ const CFG = {
      Los codes 61439, 70579 y 64674 NO van como fila propia: ya están adentro.
    ══════════════════════════════════════════════════════════════════════ */
 const DATA = [
-  { code:"61380",  country:"Colombia",              ftd:16.67, spr:88.62, prev:16 },
+  { code:"61380",  country:"Colombia",              ftd:16.67, spr:93.56, prev:16 },
   { code:"61482",  country:"Colombia",              ftd:113.33, spr:125.53, prev:0 },  // Luis + Ana Hernandez (61482 + 64674)
-  { code:"61487",  country:"Uruguay",               ftd:6.67, spr:48.08, prev:23 },
+  { code:"61487",  country:"Uruguay",               ftd:10, spr:49.73, prev:24 },
   { code:"61495",  country:"Colombia",              ftd:116.54, spr:130.91, prev:0 },
-  { code:"61538",  country:"Guatemala",             ftd:20, spr:48.07, prev:20 },
-  { code:"61572",  country:"Colombia",              ftd:23.33, spr:93.38, prev:12 },
+  { code:"61538",  country:"Guatemala",             ftd:20, spr:56.07, prev:20 },
+  { code:"61572",  country:"Colombia",              ftd:23.33, spr:93.77, prev:13 },
   { code:"61694",  country:"Ecuador",               ftd:201.79, spr:110.94, prev:0 },
-  { code:"61726",  country:"Colombia",              ftd:0, spr:47.17, prev:26 },
-  { code:"61809",  country:"Colombia",              ftd:20, spr:78.74, prev:18 },
-  { code:"62037",  country:"Ecuador",               ftd:53.33, spr:131.55, prev:5 },
+  { code:"61726",  country:"Colombia",              ftd:3.33, spr:48, prev:26 },
+  { code:"61809",  country:"Colombia",              ftd:20, spr:82.18, prev:17 },
+  { code:"62037",  country:"Ecuador",               ftd:56.67, spr:135.7, prev:5 },
   { code:"62042",  country:"México",                ftd:111.76, spr:218.11, prev:0 },
   { code:"62062",  country:"Colombia",              ftd:126.67, spr:125.84, prev:0 },
   { code:"62064",  country:"Colombia",              ftd:127.27, spr:144.77, prev:0 },
-  { code:"62149",  country:"Colombia",              ftd:150, spr:11.95, prev:8 },
-  { code:"62225",  country:"Colombia",              ftd:100, spr:126.36, prev:2 },
-  { code:"62267",  country:"Colombia",              ftd:40, spr:104.57, prev:9 },
-  { code:"62274",  country:"Ecuador",               ftd:13.33, spr:76.43, prev:19 },
-  { code:"62275",  country:"Colombia",              ftd:53.33, spr:62.99, prev:10 },
-  { code:"62396",  country:"Colombia",              ftd:43.33, spr:133.98, prev:7 },
-  { code:"62421",  country:"Venezuela",             ftd:13.33, spr:20.23, prev:29 },
-  { code:"62468",  country:"Ecuador",               ftd:6.25, spr:50.07, prev:22 },
-  { code:"62670",  country:"Colombia",              ftd:23.33, spr:91.03, prev:14 },
-  { code:"62997",  country:"Ecuador",               ftd:0, spr:10.4, prev:32 },
-  { code:"63770",  country:"Colombia",              ftd:100, spr:314.95, prev:1 },
-  { code:"64674",  country:"Colombia",              ftd:2, spr:100, prev:17 },  // Ana Maria Hernandez — compite sola en Second Chance (ya no se suma a 61482)
-  { code:"65068",  country:"Costa Rica",            ftd:53.66, spr:48.94, prev:13 },
-  { code:"65662",  country:"República Dominicana",  ftd:0, spr:21.84, prev:28 },
-  { code:"67290",  country:"Bolivia",               ftd:33.33, spr:11.38, prev:25 },
-  { code:"69127",  country:"Venezuela",             ftd:0, spr:12.45, prev:31 },
+  { code:"62149",  country:"Colombia",              ftd:150, spr:12.12, prev:8 },
+  { code:"62225",  country:"Colombia",              ftd:100, spr:138.4, prev:2 },
+  { code:"62267",  country:"Colombia",              ftd:40, spr:106.43, prev:9 },
+  { code:"62274",  country:"Ecuador",               ftd:13.33, spr:78.99, prev:19 },
+  { code:"62275",  country:"Colombia",              ftd:53.33, spr:63.16, prev:11 },
+  { code:"62396",  country:"Colombia",              ftd:43.33, spr:136.4, prev:7 },
+  { code:"62421",  country:"Venezuela",             ftd:13.33, spr:20.89, prev:27 },
+  { code:"62468",  country:"Ecuador",               ftd:6.25, spr:51.2, prev:23 },
+  { code:"62670",  country:"Colombia",              ftd:23.33, spr:96.79, prev:14 },
+  { code:"62997",  country:"Ecuador",               ftd:0, spr:10.65, prev:32 },
+  { code:"63770",  country:"Colombia",              ftd:100, spr:322.3, prev:1 },
+  { code:"64674",  country:"Colombia",              ftd:4, spr:100, prev:18 },  // Ana Maria Hernandez — compite sola en Second Chance (ya no se suma a 61482)
+  { code:"65068",  country:"Costa Rica",            ftd:58.54, spr:52.85, prev:12 },
+  { code:"65662",  country:"República Dominicana",  ftd:0, spr:22.94, prev:29 },
+  { code:"67290",  country:"Bolivia",               ftd:43.33, spr:12.05, prev:22 },
+  { code:"69127",  country:"Venezuela",             ftd:0, spr:13.67, prev:30 },
   { code:"69810",  country:"Ecuador",               ftd:154, spr:162.6, prev:0 },
-  { code:"70130",  country:"Colombia",              ftd:60.47, spr:134.45, prev:4 },
-  { code:"76322",  country:"Costa Rica",            ftd:29.23, spr:104.62, prev:11 },
-  { code:"78870",  country:"Colombia",              ftd:3.33, spr:44.77, prev:24 },  // Jonathan Sandoval (78870 + 70579)
-  { code:"80698",  country:"México",                ftd:20.45, spr:88.99, prev:15 },
-  { code:"81579",  country:"República Dominicana",  ftd:0, spr:11.98, prev:30 },
-  { code:"86157",  country:"Colombia",              ftd:76.67, spr:60.32, prev:6 },
-  { code:"91423",  country:"Venezuela",             ftd:100, spr:112.9, prev:3 },  // FTD fijo en 100% (ya logrado) — solo actualizar Spread
+  { code:"70130",  country:"Colombia",              ftd:62.79, spr:139.8, prev:4 },
+  { code:"76322",  country:"Costa Rica",            ftd:29.23, spr:105.37, prev:10 },
+  { code:"78870",  country:"Colombia",              ftd:3.33, spr:47.05, prev:25 },  // Jonathan Sandoval (78870 + 70579)
+  { code:"80698",  country:"México",                ftd:23.86, spr:93.72, prev:15 },
+  { code:"81579",  country:"República Dominicana",  ftd:0, spr:11.98, prev:31 },
+  { code:"86157",  country:"Colombia",              ftd:76.67, spr:62.02, prev:6 },
+  { code:"91423",  country:"Venezuela",             ftd:100, spr:115.62, prev:3 },  // FTD fijo en 100% (ya logrado) — solo actualizar Spread
   { code:"94693",  country:"Colombia",              ftd:110, spr:149.11, prev:0 },  // Kate Trader (94693 + 61439)
-  { code:"98392",  country:"Costa Rica",            ftd:36.67, spr:11.18, prev:21 },
-  { code:"101893", country:"Colombia",              ftd:10, spr:7.45, prev:27 },
+  { code:"98392",  country:"Costa Rica",            ftd:40, spr:11.28, prev:21 },
+  { code:"101893", country:"Colombia",              ftd:10, spr:7.62, prev:28 },
 ];
 
 /* ══════════════════════════════════════════════════════════════════════
