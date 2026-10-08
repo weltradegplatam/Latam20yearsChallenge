@@ -337,7 +337,7 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
     </div>
 
     <h1>Rumbo a <span class="bcn">Barcelona</span></h1>
-    <p class="sub">Ronda 1 cerrada: 8 partners ya viajan. La segunda oportunidad sigue abierta hasta el 7 de octubre.</p>
+    <p class="sub">Desafío cerrado. Estos son los 15 clasificados que viajan a Barcelona: 8 de la Ronda 1 y 7 de la segunda oportunidad.</p>
 
     <div class="hero-meta">
       <span class="pill" id="pill-period"></span>
@@ -365,8 +365,8 @@ details.example[open]>summary .chev{transform:rotate(180deg)}
     </article>
     <article class="rule">
       <div class="n">03</div>
-      <h3>17 lugares abiertos</h3>
-      <p>Los 8 primeros ya viajan. Quedan 17 lugares para la segunda oportunidad, hasta el 7 de octubre.</p>
+      <h3>15 viajan</h3>
+      <p>8 clasificaron en la Ronda 1 y 7 en la segunda oportunidad. En total, 15 partners viajan a Barcelona.</p>
     </article>
   </section>
 
@@ -460,47 +460,35 @@ const CFG = {
      Los codes 61439, 70579 y 64674 NO van como fila propia: ya están adentro.
    ══════════════════════════════════════════════════════════════════════ */
 const DATA = [
-  { code:"61380",  country:"Colombia",              ftd:16.67, spr:105.18, prev:21 },
-  { code:"61434",  country:"Colombia",              ftd:100, spr:132.92, prev:0 },  // Juan Jose Olave Romero — reingresó a Second Chance
+  { code:"61380",  country:"Colombia",              ftd:16.67, spr:107.6, prev:21 },
+  { code:"61434",  country:"Colombia",              ftd:100, spr:136.49, prev:6 },  // Juan Jose Olave Romero — reingresó a Second Chance
   { code:"61482",  country:"Colombia",              ftd:113.33, spr:125.53, prev:0 },  // Luis + Ana Hernandez (61482 + 64674)
-  { code:"61487",  country:"Uruguay",               ftd:10, spr:61.7, prev:24 },
   { code:"61495",  country:"Colombia",              ftd:116.54, spr:130.91, prev:0 },
-  { code:"61538",  country:"Guatemala",             ftd:23.33, spr:120.07, prev:19 },
-  { code:"61572",  country:"Colombia",              ftd:43.33, spr:96.67, prev:15 },
+  { code:"61538",  country:"Guatemala",             ftd:23.33, spr:122.27, prev:19 },
+  { code:"61572",  country:"Colombia",              ftd:43.33, spr:97.4, prev:15 },
   { code:"61694",  country:"Ecuador",               ftd:201.79, spr:110.94, prev:0 },
-  { code:"61726",  country:"Colombia",              ftd:3.33, spr:52.93, prev:26 },
-  { code:"61809",  country:"Colombia",              ftd:23.33, spr:95.53, prev:20 },
-  { code:"62037",  country:"Ecuador",               ftd:56.67, spr:155.33, prev:11 },
+  { code:"61809",  country:"Colombia",              ftd:23.33, spr:97.86, prev:20 },
+  { code:"62037",  country:"Ecuador",               ftd:56.67, spr:157.78, prev:11 },
   { code:"62042",  country:"México",                ftd:111.76, spr:218.11, prev:0 },
   { code:"62062",  country:"Colombia",              ftd:126.67, spr:125.84, prev:0 },
   { code:"62064",  country:"Colombia",              ftd:127.27, spr:144.77, prev:0 },
-  { code:"62149",  country:"Colombia",              ftd:153.33, spr:12.84, prev:14 },
-  { code:"62225",  country:"Colombia",              ftd:140, spr:177.84, prev:2 },
-  { code:"62267",  country:"Colombia",              ftd:120, spr:126.17, prev:4 },
-  { code:"62274",  country:"Ecuador",               ftd:13.33, spr:86, prev:22 },
-  { code:"62275",  country:"Colombia",              ftd:53.33, spr:70.13, prev:16 },
-  { code:"62396",  country:"Colombia",              ftd:100, spr:168.38, prev:3 },
-  { code:"62421",  country:"Venezuela",             ftd:13.33, spr:28.12, prev:28 },
-  { code:"62468",  country:"Ecuador",               ftd:9.38, spr:56.33, prev:25 },
-  { code:"62670",  country:"Colombia",              ftd:30, spr:141.04, prev:18 },
-  { code:"62997",  country:"Ecuador",               ftd:0, spr:43.61, prev:29 },
-  { code:"63770",  country:"Colombia",              ftd:100, spr:368.6, prev:1 },
-  { code:"64674",  country:"Colombia",              ftd:78, spr:100, prev:8 },  // Ana Maria Hernandez — compite sola en Second Chance (ya no se suma a 61482)
-  { code:"65068",  country:"Costa Rica",            ftd:163.41, spr:62.46, prev:9 },
-  { code:"65662",  country:"República Dominicana",  ftd:0, spr:26.59, prev:30 },
-  { code:"67290",  country:"Bolivia",               ftd:43.33, spr:19.29, prev:23 },
-  { code:"69127",  country:"Venezuela",             ftd:0, spr:17.32, prev:32 },
+  { code:"62149",  country:"Colombia",              ftd:153.33, spr:12.89, prev:14 },
+  { code:"62225",  country:"Colombia",              ftd:143.33, spr:179.74, prev:2 },
+  { code:"62267",  country:"Colombia",              ftd:123.33, spr:131.57, prev:4 },
+  { code:"62275",  country:"Colombia",              ftd:53.33, spr:72.08, prev:16 },
+  { code:"62396",  country:"Colombia",              ftd:100, spr:171.37, prev:3 },
+  { code:"62670",  country:"Colombia",              ftd:30, spr:142.98, prev:18 },
+  { code:"63770",  country:"Colombia",              ftd:100, spr:374.78, prev:1 },
+  { code:"64674",  country:"Colombia",              ftd:114, spr:100, prev:7 },  // Ana Maria Hernandez — compite sola en Second Chance (ya no se suma a 61482)
+  { code:"65068",  country:"Costa Rica",            ftd:165.85, spr:63.27, prev:9 },
   { code:"69810",  country:"Ecuador",               ftd:154, spr:162.6, prev:0 },
-  { code:"70130",  country:"Colombia",              ftd:72.09, spr:169.23, prev:10 },
-  { code:"76322",  country:"Costa Rica",            ftd:43.85, spr:109.72, prev:12 },
-  { code:"78870",  country:"Colombia",              ftd:3.33, spr:48.06, prev:27 },  // Jonathan Sandoval (78870 + 70579)
-  { code:"80698",  country:"México",                ftd:32.95, spr:106.95, prev:17 },
-  { code:"81579",  country:"República Dominicana",  ftd:0, spr:11.98, prev:33 },
-  { code:"86157",  country:"Colombia",              ftd:100, spr:85.52, prev:7 },
-  { code:"91423",  country:"Venezuela",             ftd:100, spr:136.3, prev:5 },  // FTD fijo en 100% (ya logrado) — solo actualizar Spread
+  { code:"70130",  country:"Colombia",              ftd:69.77, spr:176.98, prev:10 },
+  { code:"76322",  country:"Costa Rica",            ftd:43.85, spr:110.03, prev:12 },
+  { code:"80698",  country:"México",                ftd:32.95, spr:108.25, prev:17 },
+  { code:"86157",  country:"Colombia",              ftd:100, spr:90.05, prev:8 },
+  { code:"91423",  country:"Venezuela",             ftd:100, spr:139.92, prev:5 },  // FTD fijo en 100% (ya logrado) — solo actualizar Spread
   { code:"94693",  country:"Colombia",              ftd:110, spr:149.11, prev:0 },  // Kate Trader (94693 + 61439)
-  { code:"98392",  country:"Costa Rica",            ftd:113.33, spr:13.57, prev:13 },
-  { code:"101893", country:"Colombia",              ftd:10, spr:8.88, prev:31 },
+  { code:"98392",  country:"Costa Rica",            ftd:113.33, spr:13.72, prev:13 },
 ];
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -566,9 +554,7 @@ const SC_QUAL = sc_qual.length;
 const OPEN    = Math.max(0, CFG.ASIENTOS - N_WON - SC_QUAL);   // lugares que quedan realmente abiertos
 const AVG     = N_SC ? SC.reduce((s,r)=>s+r.avance,0) / N_SC : 0;   // avance prom. de la 2ª oport.
 const CUT     = Math.min(SC_QUAL, REMAINING);   // línea de corte de la 2ª oportunidad
-const CUT_LABEL = OPEN <= 0
-  ? `Línea de corte · lugares completos`
-  : `Línea de corte · ${SC_QUAL} ${SC_QUAL===1?'nuevo clasificado':'nuevos clasificados'} · ${OPEN} ${OPEN===1?'lugar abierto':'lugares abiertos'}`;
+const CUT_LABEL = `Línea de corte · ${SC_QUAL} clasificados en la 2ª oportunidad`;
 
 /* Íconos (sin emojis: SVG) para los ganadores congelados */
 const crownSVG = `<svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8.5l4 3.2L12 5l5 6.7 4-3.2-1.7 9.5H4.7L3 8.5z" fill="#E8B33A"/><circle cx="3" cy="8.5" r="1.4" fill="#F7D774"/><circle cx="21" cy="8.5" r="1.4" fill="#F7D774"/><circle cx="12" cy="4.6" r="1.5" fill="#F7D774"/></svg>`;
@@ -597,34 +583,21 @@ function missingText(r){
    Header + stats
    ══════════════════════════════════════════════════════════════════════ */
 document.getElementById("pill-period").textContent = CFG.PERIODO;
-// ── Countdown en vivo hasta el cierre (18:00 hs PY = UTC-03) ──
-const CIERRE_ISO = "2026-10-07T18:00:00-03:00";
-function cdParts(){
-  let diff = new Date(CIERRE_ISO) - new Date();
-  if(diff < 0) diff = 0;
-  const h = Math.floor(diff/3600000);
-  const m = Math.floor(diff%3600000/60000);
-  const s = Math.floor(diff%60000/1000);
-  return {h,m,s,
-    full:`${h}h ${String(m).padStart(2,"0")}m ${String(s).padStart(2,"0")}s`,
-    hm:`${h}h ${String(m).padStart(2,"0")}m`};
-}
-function tickCD(){
-  const c = cdParts();
+// ── Desafío cerrado: resultados finales (sin countdown) ──
+function fillClosed(){
   const p = document.getElementById("pill-date");
-  if(p) p.textContent = "Cierra en " + c.full;
-  document.querySelectorAll(".cd-banner").forEach(e => e.textContent = `${OPEN} ${OPEN===1?'lugar abierto':'lugares abiertos'} · cierra en ${c.full}`);
-  document.querySelectorAll(".cd-stat").forEach(e => e.innerHTML = `${c.hm}<small> ${String(c.s).padStart(2,"0")}s</small>`);
+  if(p) p.textContent = "Resultados finales · " + CFG.FECHA;
+  document.querySelectorAll(".cd-banner").forEach(e => e.textContent = `${SC_QUAL} ${SC_QUAL===1?'clasificado':'clasificados'} · cerrado`);
+  document.querySelectorAll(".cd-stat").forEach(e => e.textContent = "Cerrado");
 }
-setInterval(tickCD, 1000);
 
 document.getElementById("stats").innerHTML = [
   ["Clasificados",     `${N_WON + SC_QUAL}<small> / ${CFG.ASIENTOS}</small>`],
-  ["Lugares abiertos", `${Math.max(0, CFG.ASIENTOS - N_WON - SC_QUAL)}`],
-  ["En 2ª oportunidad",`${N_SC}`],
-  ["Cierra en",        `<span class="cd-stat"></span>`]
+  ["Ronda 1",          `${N_WON}`],
+  ["2ª oportunidad",   `${SC_QUAL}`],
+  ["Estado",           `<span class="cd-stat"></span>`]
 ].map(([k,v])=>`<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
-tickCD();   // primer render del countdown
+fillClosed();
 
 /* ══════════════════════════════════════════════════════════════════════
    Filas
@@ -726,8 +699,7 @@ function verdictHTML(r){
       : `<b>¡Ya ganaste tu lugar!</b> Clasificaste en la Ronda 1 con una ventaja de <span class="em">${fmtAdv(r.advantage)}</span>. Viajás a Barcelona.`;
   }
   if(r.state === "seat"){
-    return `<b>Tenés un lugar.</b> Estás dentro de los ${REMAINING} lugares abiertos — pero no está cerrado.
-            Cualquiera que termine por encima antes del ${CFG.CIERRE2} te lo saca.`;
+    return `<b>¡Clasificaste!</b> Cerraste los dos indicadores al 100% en la segunda oportunidad. Viajás a Barcelona.`;
   }
   if(r.state === "qualified"){
     return `<b>Ya clasificaste.</b> Tenés una ventaja de <span class="em">${fmtAdv(r.advantage)}</span>,
@@ -813,15 +785,18 @@ const clear = document.getElementById("clear");
 input.addEventListener("input", ()=>{
   clear.disabled = input.value.length === 0;
   render(input.value);
+  fillClosed();
 });
 clear.addEventListener("click", ()=>{
   input.value = "";
   clear.disabled = true;
   render("");
+  fillClosed();
   input.focus();
 });
 
 render("");
+fillClosed();   // estado cerrado en la banda (tras render)
 </script>
 </body>
 </html>
